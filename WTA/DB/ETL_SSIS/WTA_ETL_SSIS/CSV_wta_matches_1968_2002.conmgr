@@ -1,0 +1,290 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CSV_wta_matches_1968_2002"
+  DTS:DTSID="{19FA1B13-1348-4159-885D-82FAF9E52E47}"
+  DTS:CreationName="MULTIFLATFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:Format="Delimited"
+      DTS:LocaleID="1033"
+      DTS:HeaderRowDelimiter="_x000D__x000A_"
+      DTS:ColumnNamesInFirstDataRow="True"
+      DTS:RowDelimiter=""
+      DTS:TextQualifier="_x003C_none_x003E_"
+      DTS:CodePage="1252"
+      DTS:ConnectionString="D:\work\github\tennis_wta\wta_matches_1968.csv|D:\work\github\tennis_wta\wta_matches_1969.csv|D:\work\github\tennis_wta\wta_matches_1970.csv|D:\work\github\tennis_wta\wta_matches_1971.csv|D:\work\github\tennis_wta\wta_matches_1972.csv|D:\work\github\tennis_wta\wta_matches_1973.csv|D:\work\github\tennis_wta\wta_matches_1974.csv|D:\work\github\tennis_wta\wta_matches_1975.csv|D:\work\github\tennis_wta\wta_matches_1976.csv|D:\work\github\tennis_wta\wta_matches_1977.csv|D:\work\github\tennis_wta\wta_matches_1978.csv|D:\work\github\tennis_wta\wta_matches_1979.csv|D:\work\github\tennis_wta\wta_matches_1980.csv|D:\work\github\tennis_wta\wta_matches_1981.csv|D:\work\github\tennis_wta\wta_matches_1982.csv|D:\work\github\tennis_wta\wta_matches_1983.csv|D:\work\github\tennis_wta\wta_matches_1984.csv|D:\work\github\tennis_wta\wta_matches_1985.csv|D:\work\github\tennis_wta\wta_matches_1986.csv|D:\work\github\tennis_wta\wta_matches_1987.csv|D:\work\github\tennis_wta\wta_matches_1988.csv|D:\work\github\tennis_wta\wta_matches_1989.csv|D:\work\github\tennis_wta\wta_matches_1990.csv|D:\work\github\tennis_wta\wta_matches_1991.csv|D:\work\github\tennis_wta\wta_matches_1992.csv|D:\work\github\tennis_wta\wta_matches_1993.csv|D:\work\github\tennis_wta\wta_matches_1994.csv|D:\work\github\tennis_wta\wta_matches_1995.csv|D:\work\github\tennis_wta\wta_matches_1996.csv|D:\work\github\tennis_wta\wta_matches_1997.csv|D:\work\github\tennis_wta\wta_matches_1998.csv|D:\work\github\tennis_wta\wta_matches_1999.csv|D:\work\github\tennis_wta\wta_matches_2000.csv|D:\work\github\tennis_wta\wta_matches_2001.csv|D:\work\github\tennis_wta\wta_matches_2002.csv">
+      <DTS:FlatFileColumns>
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="tourney_id"
+          DTS:DTSID="{3FBCB243-0220-4FA2-A98B-9B2B635A8A90}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="tourney_name"
+          DTS:DTSID="{C6217283-B33F-417F-9513-501C66886631}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="surface"
+          DTS:DTSID="{97F92D01-FDAA-42DB-B739-7A7DD0E7A541}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="draw_size"
+          DTS:DTSID="{8538EE68-4DF5-4581-A855-B600529A2FCB}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="tourney_level"
+          DTS:DTSID="{B202265C-F99F-4ED2-A794-C3E855F2512E}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="tourney_date"
+          DTS:DTSID="{389A2962-CE4D-4306-8406-633868A52872}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="match_num"
+          DTS:DTSID="{B1B4DBE2-9869-40A2-B1D4-1418B6AB4692}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_id"
+          DTS:DTSID="{3F650A08-9C49-4D7C-92E1-B58A9D4D45BE}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_seed"
+          DTS:DTSID="{AE4FC41E-274B-4C8D-9DB9-A218DE0D0CB4}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_entry"
+          DTS:DTSID="{9AF6E7F1-F860-471D-93EF-8C2A6D037753}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_name"
+          DTS:DTSID="{9D5AA19E-E776-460A-92FD-832BF82AFE9B}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_hand"
+          DTS:DTSID="{7D3EE53B-8033-4236-9283-21DFF1416D92}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_ht"
+          DTS:DTSID="{B9253F92-76A6-4898-868E-35DAE26DE0BB}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_ioc"
+          DTS:DTSID="{7F8ECED6-00B9-4A69-BD9A-C70B447243B9}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_age"
+          DTS:DTSID="{689FFCBC-8A5E-4FF7-9BBE-A3B0171EBF2E}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_rank"
+          DTS:DTSID="{DC4CF568-0859-454E-A1A9-AA4992F8258D}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="winner_rank_points"
+          DTS:DTSID="{2D052285-5896-4068-92B4-50D65076EAB8}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_id"
+          DTS:DTSID="{42F6FE9B-D08E-456D-B9AE-9622924B19FC}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_seed"
+          DTS:DTSID="{32FA1C5D-8ED9-4634-8F01-B64DBD9D41EC}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_entry"
+          DTS:DTSID="{42DC3653-B064-497C-8912-AEDFD5770D64}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_name"
+          DTS:DTSID="{F381CB45-B869-4FF6-A841-4312300E8536}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_hand"
+          DTS:DTSID="{5A800D60-9380-4691-B8D8-547572637EC5}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_ht"
+          DTS:DTSID="{A17E955B-A60F-4A89-81F7-0066C9546372}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_ioc"
+          DTS:DTSID="{B542C6F6-E52B-49DB-94B3-ABCAAF57AA71}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_age"
+          DTS:DTSID="{AAF9E246-7E87-4F3D-AFB5-B59C25B200BE}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_rank"
+          DTS:DTSID="{DA95514F-43E2-4053-8E7E-AC9476659ACD}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="loser_rank_points"
+          DTS:DTSID="{98A88B90-26E6-4CD0-9B51-8C8D17EA8474}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="score"
+          DTS:DTSID="{9115AF42-D33B-4CBC-99E4-E021899D5985}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x002C_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="best_of"
+          DTS:DTSID="{53BFF811-024C-4F7A-B38C-2B7303910464}"
+          DTS:CreationName="" />
+        <DTS:FlatFileColumn
+          DTS:ColumnType="Delimited"
+          DTS:ColumnDelimiter="_x000D__x000A_"
+          DTS:MaximumWidth="50"
+          DTS:DataType="129"
+          DTS:TextQualified="True"
+          DTS:ObjectName="round"
+          DTS:DTSID="{A727EA14-6768-43F6-81BA-B136C03E2F6B}"
+          DTS:CreationName="" />
+      </DTS:FlatFileColumns>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
