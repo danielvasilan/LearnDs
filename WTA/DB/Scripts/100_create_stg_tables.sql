@@ -52,4 +52,15 @@ CREATE TABLE [stg].[wta_matches](
 ) ON [PRIMARY]
 GO
 
+IF NOT EXISTS (SELECT * FROM sys.objects where name = 'wta_players')
+CREATE TABLE [stg].[wta_players](
+	[player_id] [varchar](50),
+	player_firstname varchar(100),
+	player_lastname varchar(100),
+	player_hand varchar(1),
+	player_birthdate_str varchar(20),
+	country_code varchar(5)
+	)
+GO
+
 

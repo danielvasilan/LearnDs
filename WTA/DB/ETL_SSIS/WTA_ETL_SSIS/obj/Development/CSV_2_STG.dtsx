@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="7/27/2018 6:51:14 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="REP-SOFT33"
   DTS:CreatorName="LASTING\dvasilan"
-  DTS:DTSID="{612A2248-4F72-4CBC-9430-5682D6F8E8EB}"
+  DTS:DTSID="{3F829307-8CE2-4812-913E-2AA36BAE3015}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.107"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="CSV_2_STG"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{4474ECA6-9D33-4F12-920B-F060DF30CCB2}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{6F5784DD-5909-412D-918F-48647D3344E4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -2374,6 +2374,239 @@
               </outputs>
             </component>
             <component
+              refId="Package\Load CSVs into stage table\CSV players"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="CSV players"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CSVs into stage table\CSV players.Connections[FlatFileConnection]"
+                  connectionManagerID="{53EDE46D-E672-4692-8C5C-607E801AF606}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CSV_wta_players]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_id]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_id]"
+                      name="player_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_firstname]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_firstname]"
+                      name="player_firstname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_lastname]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_lastname]"
+                      name="player_lastname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_hand]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_hand]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_hand]"
+                      name="player_hand"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_birthdate_str]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_birthdate_str]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_birthdate_str]"
+                      name="player_birthdate_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[country_code]"
+                      length="50"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[country_code]"
+                      name="country_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_hand]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_hand" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[player_birthdate_str]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_birthdate_str" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].ExternalColumns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="country_code" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load CSVs into stage table\SQL wta_matches"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -3799,6 +4032,193 @@
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Load CSVs into stage table\SQL wta_Players"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SQL wta_Players"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[wta_players]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load CSVs into stage table\SQL wta_Players.Connections[OleDbConnection]"
+                  connectionManagerID="{199E17A7-EA80-48FA-BC11-E6D4AB614E10}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SQL_WTA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[player_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="player_id"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_id]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_id]" />
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[player_firstname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="player_firstname"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_firstname]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_firstname]" />
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[player_lastname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="player_lastname"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_lastname]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_lastname]" />
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[player_hand]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="player_hand"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_hand]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_hand]" />
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[player_birthdate_str]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="player_birthdate_str"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_birthdate_str]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[player_birthdate_str]" />
+                    <inputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].Columns[country_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="country_code"
+                      externalMetadataColumnId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[country_code]"
+                      lineageId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output].Columns[country_code]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="player_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="player_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="player_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_hand]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="player_hand" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[player_birthdate_str]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="player_birthdate_str" />
+                    <externalMetadataColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input].ExternalColumns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="country_code" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load CSVs into stage table\SQL wta_Players.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load CSVs into stage table\SQL wta_Players.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load CSVs into stage table\SQL wta_Players.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load CSVs into stage table\SQL wta_Players.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -3811,6 +4231,11 @@
               endId="Package\Load CSVs into stage table\SQL wta_matches 2003_2018.Inputs[OLE DB Destination Input]"
               name="Flat File Source Output"
               startId="Package\Load CSVs into stage table\CSV 2003-2018.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Load CSVs into stage table.Paths[Flat File Source Output2]"
+              endId="Package\Load CSVs into stage table\SQL wta_Players.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load CSVs into stage table\CSV players.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3839,7 +4264,15 @@
     design-time-name="Package\Load CSVs into stage table">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Load CSVs into stage table\SQL wta_matches 2003_2018"
+          TopLeft="218.285718003098,173.129414192781" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load CSVs into stage table\CSV 2003-2018"
+          TopLeft="229.142861045137,20.18823557725" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Load CSVs into stage table\CSV 1968-2002"
@@ -3848,36 +4281,6 @@
           Size="163.2,41.6"
           Id="Package\Load CSVs into stage table\SQL wta_matches"
           TopLeft="20.9285716913184,170.064708190311" />
-        <EdgeLayout
-          Id="Package\Load CSVs into stage table.Paths[Flat File Source Output]"
-          TopLeft="101.350000340598,55.6705884326288">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,114.394119757682"
-              Start="0,0"
-              End="0,106.894119757682">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,106.894119757682" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\Load CSVs into stage table\CSV 2003-2018"
-          TopLeft="229.142861045137,20.18823557725" />
-        <NodeLayout
-          Size="218.4,41.6"
-          Id="Package\Load CSVs into stage table\SQL wta_matches 2003_2018"
-          TopLeft="218.285718003098,173.129414192781" />
         <EdgeLayout
           Id="Package\Load CSVs into stage table.Paths[Flat File Source Output1]"
           TopLeft="304.742861045137,61.78823557725">
@@ -3912,9 +4315,86 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load CSVs into stage table.Paths[Flat File Source Output]"
+          TopLeft="101.350000340598,55.6705884326288">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,114.394119757682"
+              Start="0,0"
+              End="0,106.894119757682">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.894119757682" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\Load CSVs into stage table\CSV players"
+          TopLeft="442.285721817795,19.5764708627879" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Load CSVs into stage table\SQL wta_Players"
+          TopLeft="457.142864927954,172.517649478318" />
+        <EdgeLayout
+          Id="Package\Load CSVs into stage table.Paths[Flat File Source Output2]"
+          TopLeft="509.085721817795,61.1764708627879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.4571431101587,111.341178615531"
+              Start="0,0"
+              End="26.4571431101587,103.841178615531">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6705893077653" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.6705893077653"
+                    Point2="0,55.6705893077653"
+                    Point3="4,55.6705893077653" />
+                  <mssgle:LineSegment
+                    End="22.4571431101587,55.6705893077653" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.4571431101587,55.6705893077653"
+                    Point2="26.4571431101587,55.6705893077653"
+                    Point3="26.4571431101587,59.6705893077653" />
+                  <mssgle:LineSegment
+                    End="26.4571431101587,103.841178615531" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CSVs into stage table\SQL wta_matches 2003_2018">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load CSVs into stage table\SQL wta_matches">
     <Properties>
@@ -3929,7 +4409,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load CSVs into stage table\SQL wta_matches 2003_2018">
+    design-time-name="Package\Load CSVs into stage table\SQL wta_Players">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
