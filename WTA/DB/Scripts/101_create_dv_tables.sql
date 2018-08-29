@@ -83,3 +83,42 @@ ELSE
 GO
 
 
+IF NOT EXISTS (select * from INFORMATION_SCHEMA.TABLES  where TABLE_SCHEMA = 'lnk' and table_name = 'Player_Country')
+BEGIN
+
+	CREATE TABLE [lnk].[Player_Country](
+		PlayerKey varchar(100) NOT NULL,
+		CountryKey varchar(10) NOT NULL,
+				
+		CONSTRAINT [PK_Player_Country] PRIMARY KEY CLUSTERED ( PlayerKey , CountryKey)
+
+	)
+
+	PRINT 'Table created: [lnk].[Player_Country] ';
+END
+ELSE
+	PRINT 'Table exists:  [lnk].[Player_Country] ';
+GO
+
+
+IF NOT EXISTS (select * from INFORMATION_SCHEMA.TABLES  where TABLE_SCHEMA = 'lnk' and table_name = 'TourneyMatch')
+BEGIN
+
+	CREATE TABLE [lnk].[TourneyMatch](
+		MatchKey varchar(200) NOT NULL,
+		TourneyKey varchar(100) NOT NULL,
+		TourneyRound varchar(20) NOT NULL,
+		WinnerKey varchar(100) NOT NULL,
+		LoserKey varchar(100) NOT NULL,
+				
+		CONSTRAINT [PK_TourneyMatch] PRIMARY KEY CLUSTERED ( MatchKey )
+
+	)
+
+	PRINT 'Table created: [lnk].[TourneyMatch] ';
+END
+ELSE
+	PRINT 'Table exists:  [lnk].[TourneyMatch] ';
+GO
+
+
