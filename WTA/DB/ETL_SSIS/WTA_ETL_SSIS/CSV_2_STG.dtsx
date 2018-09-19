@@ -11,16 +11,460 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="CSV_2_STG"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{6F5784DD-5909-412D-918F-48647D3344E4}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{F5A9BB5E-E0A8-4B9E-A32D-B85694832D1D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\country_iso_2_stg"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ee5bbe41-7da4-4a15-b333-05b6b8a19224}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="country_iso_2_stg"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\country_iso_2_stg\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\country_iso_2_stg\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{C6D4767B-A7FF-4E42-9755-8C41E663E0F4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CSV_country_iso]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-2 code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Alpha-2 code]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-2 code]"
+                      name="Alpha-2 code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-3 code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Alpha-3 code]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-3 code]"
+                      name="Alpha-3 code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Numeric code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Numeric code]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Numeric code]"
+                      name="Numeric code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Latitude (average)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Latitude (average)]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Latitude (average)]"
+                      name="Latitude (average)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Longitude (average)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Longitude (average)]"
+                      length="50"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Longitude (average)]"
+                      name="Longitude (average)"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Alpha-2 code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Alpha-2 code" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Alpha-3 code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Alpha-3 code" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Numeric code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Numeric code" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Latitude (average)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Latitude (average)" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Longitude (average)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Longitude (average)" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\country_iso_2_stg\stg_country_iso"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="stg_country_iso"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[Country_iso]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\country_iso_2_stg\stg_country_iso.Connections[OleDbConnection]"
+                  connectionManagerID="{199E17A7-EA80-48FA-BC11-E6D4AB614E10}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SQL_WTA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Alpha-2 code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Alpha-2 code"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[iso_code_2]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-2 code]" />
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Alpha-3 code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Alpha-3 code"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[iso_code_3]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Alpha-3 code]" />
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Numeric code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Numeric code"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[num_code]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Numeric code]" />
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Latitude (average)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Latitude (average)"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[avg_lat]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Latitude (average)]" />
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Longitude (average)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Longitude (average)"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[avg_long]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Longitude (average)]" />
+                    <inputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[country_name]"
+                      lineageId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[country_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="country_name" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[iso_code_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="iso_code_2" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[iso_code_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="iso_code_3" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[num_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="num_code" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[avg_lat]"
+                      dataType="numeric"
+                      name="avg_lat"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input].ExternalColumns[avg_long]"
+                      dataType="numeric"
+                      name="avg_long"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\country_iso_2_stg\stg_country_iso.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\country_iso_2_stg\stg_country_iso.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\country_iso_2_stg\stg_country_iso.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\country_iso_2_stg\stg_country_iso.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\country_iso_2_stg.Paths[Flat File Source Output]"
+              endId="Package\country_iso_2_stg\stg_country_iso.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\country_iso_2_stg\Flat File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Load CSVs into stage table"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{2D550DAE-B6B7-471E-B5E2-66E735837BDD}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -4254,6 +4698,10 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
+          Size="164,41.6"
+          Id="Package\country_iso_2_stg"
+          TopLeft="65.1428582522333,147.482353584659" />
+        <NodeLayout
           Size="204,41.6"
           Id="Package\Load CSVs into stage table"
           TopLeft="65.1428582522333,45.8823535846591" />
@@ -4261,18 +4709,76 @@
     </LayoutInfo>
   </Package>
   <TaskHost
+    design-time-name="Package\country_iso_2_stg">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\country_iso_2_stg\Flat File Source"
+          TopLeft="135.2,44.8" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\country_iso_2_stg\stg_country_iso"
+          TopLeft="196.8,189.6" />
+        <EdgeLayout
+          Id="Package\country_iso_2_stg.Paths[Flat File Source Output]"
+          TopLeft="210.4,86.4">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.8,103.2"
+              Start="0,0"
+              End="62.8,95.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.6" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.6"
+                    Point2="0,51.6"
+                    Point3="4,51.6" />
+                  <mssgle:LineSegment
+                    End="58.8,51.6" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.8,51.6"
+                    Point2="62.8,51.6"
+                    Point3="62.8,55.6" />
+                  <mssgle:LineSegment
+                    End="62.8,95.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
     design-time-name="Package\Load CSVs into stage table">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="218.4,41.6"
-          Id="Package\Load CSVs into stage table\SQL wta_matches 2003_2018"
-          TopLeft="218.285718003098,173.129414192781" />
+          Size="133.6,41.6"
+          Id="Package\Load CSVs into stage table\CSV players"
+          TopLeft="442.285721817795,19.5764708627879" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Load CSVs into stage table\CSV 2003-2018"
           TopLeft="229.142861045137,20.18823557725" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Load CSVs into stage table\SQL wta_Players"
+          TopLeft="457.142864927954,172.517649478318" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Load CSVs into stage table\SQL wta_matches 2003_2018"
+          TopLeft="218.285718003098,173.129414192781" />
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Load CSVs into stage table\CSV 1968-2002"
@@ -4281,6 +4787,40 @@
           Size="163.2,41.6"
           Id="Package\Load CSVs into stage table\SQL wta_matches"
           TopLeft="20.9285716913184,170.064708190311" />
+        <EdgeLayout
+          Id="Package\Load CSVs into stage table.Paths[Flat File Source Output2]"
+          TopLeft="509.085721817795,61.1764708627879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.4571431101587,111.341178615531"
+              Start="0,0"
+              End="26.4571431101587,103.841178615531">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.6705893077653" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.6705893077653"
+                    Point2="0,55.6705893077653"
+                    Point3="4,55.6705893077653" />
+                  <mssgle:LineSegment
+                    End="22.4571431101587,55.6705893077653" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.4571431101587,55.6705893077653"
+                    Point2="26.4571431101587,55.6705893077653"
+                    Point3="26.4571431101587,59.6705893077653" />
+                  <mssgle:LineSegment
+                    End="26.4571431101587,103.841178615531" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load CSVs into stage table.Paths[Flat File Source Output1]"
           TopLeft="304.742861045137,61.78823557725">
@@ -4337,51 +4877,22 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="133.6,41.6"
-          Id="Package\Load CSVs into stage table\CSV players"
-          TopLeft="442.285721817795,19.5764708627879" />
-        <NodeLayout
-          Size="156.8,41.6"
-          Id="Package\Load CSVs into stage table\SQL wta_Players"
-          TopLeft="457.142864927954,172.517649478318" />
-        <EdgeLayout
-          Id="Package\Load CSVs into stage table.Paths[Flat File Source Output2]"
-          TopLeft="509.085721817795,61.1764708627879">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26.4571431101587,111.341178615531"
-              Start="0,0"
-              End="26.4571431101587,103.841178615531">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.6705893077653" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,51.6705893077653"
-                    Point2="0,55.6705893077653"
-                    Point3="4,55.6705893077653" />
-                  <mssgle:LineSegment
-                    End="22.4571431101587,55.6705893077653" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.4571431101587,55.6705893077653"
-                    Point2="26.4571431101587,55.6705893077653"
-                    Point3="26.4571431101587,59.6705893077653" />
-                  <mssgle:LineSegment
-                    End="26.4571431101587,103.841178615531" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load CSVs into stage table\SQL wta_Players">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load CSVs into stage table\SQL wta_matches 2003_2018">
     <Properties>
@@ -4397,19 +4908,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load CSVs into stage table\SQL wta_matches">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load CSVs into stage table\SQL wta_Players">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

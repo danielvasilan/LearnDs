@@ -2,18 +2,18 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>WTA_ETL_SSIS</Name>
-    <LastWriteTime>2018-08-28T12:32:58.1468793Z</LastWriteTime>
+    <LastWriteTime>2018-09-18T11:05:55.6553539Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>CSV_2_STG.dtsx</Name>
-      <LastWriteTime>2018-08-28T12:11:26.6005743Z</LastWriteTime>
+      <LastWriteTime>2018-09-18T14:05:22.4647972Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>STG_2_DV.dtsx</Name>
-      <LastWriteTime>2018-08-29T08:11:46.931097Z</LastWriteTime>
+      <LastWriteTime>2018-09-18T14:07:24.521277Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

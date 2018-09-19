@@ -121,4 +121,19 @@ ELSE
 	PRINT 'Table exists:  [lnk].[TourneyMatch] ';
 GO
 
+IF NOT EXISTS (select * from INFORMATION_SCHEMA.TABLES  where TABLE_SCHEMA = 'hub' and table_name = 'Country')
+BEGIN
 
+	CREATE TABLE [hub].[Country](
+		CountryKey varchar(20) NOT NULL,
+		CountryName varchar(200) NOT NULL,
+				
+		CONSTRAINT [PK_Country] PRIMARY KEY CLUSTERED ( CountryKey )
+
+	)
+
+	PRINT 'Table created: [hub].[Country] ';
+END
+ELSE
+	PRINT 'Table exists:  [hub].[Country] ';
+GO

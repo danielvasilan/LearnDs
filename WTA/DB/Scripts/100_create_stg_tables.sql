@@ -64,3 +64,22 @@ CREATE TABLE [stg].[wta_players](
 GO
 
 
+IF NOT EXISTS (SELECT * FROM sys.objects where name = 'Country_iso')
+CREATE TABLE [stg].[Country_iso](
+	country_name varchar(100) ,
+	iso_code_2 varchar(2),
+	iso_code_3 varchar(3),
+	num_code varchar(10), 
+	avg_lat numeric,
+	avg_long numeric
+)
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX stg_country_iso_code_3 on stg.country_iso(iso_code_3)
+GO
+
+select iso_code_3, count(1) from [stg].[Country_iso] group by iso_code_3
+having count(1) > 1
+
+select * from [stg].[Country_iso] 
+where iso_code_3 = 'LBY'
