@@ -154,9 +154,30 @@ class Population:
 				msg += " " + items_nm[idx]
 		print(msg)
 	
+	def storeContent(self, storage):
+		for m in self.individuals :
+			histRecord = [self.generation_no, m.id, m.weight, m.val, m.status]
+			histRecord += m.genome
+			storage.content.append(histRecord)
+
+	
+class Storage:
+	#definition = Generation;IndividId;Weight;Value;Genome[]
+	content = []
+	
+	def __init__(self):
+		self.content = []
+	
+	def writeInFile (self, fileName):
+		f = open(fileName, "w")
+		for rec in self.content:
+			f.write(str(rec)+"\n")
+		f.close()
+	
 ### main program
 
 # initialize
+history = Storage()
 population = Population(population_size)
 # population.printString()
 for g in range(1, max_generations + 1):
@@ -165,6 +186,9 @@ for g in range(1, max_generations + 1):
 	population.mutation()
 	population.evaluate()
 #	population.printString()
+	population.storeContent(history)
+
+history.writeInFile("ex1_run.csv")
 
 print("Generations: " + str(population.generation_no))
 population.printBest()
