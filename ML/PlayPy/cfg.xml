@@ -1,0 +1,252 @@
+<CFG version="2.0.0">
+
+	<Layer name="DV">
+		<Entities>
+			<Entity name="lnk.ShiftPart" schema="lnk" type="table"/>
+			<Entity name="lnk.Shift_ShiftLabel" schema="lnk" type="table"/>
+			<Entity name="hub.Shiftlabel" schema="hub" type="table"/>
+			<Entity name="sat.ShiftPart_Attr" schema="sat" type="table"/>
+			<Entity name="lnk.AreaValue" schema="lnk" type="table"/>
+			<Entity name="lnk.Area_Hierarchy" schema="lnk" type="table"/>
+		</Entities>
+	</Layer>
+	
+	<Layer name="BIZ">
+		<Entities>
+			<Entity name="biz.Date_LastYear_1000" schema="biz" type="view">
+				<Command>
+				<![CDATA[
+					SELECT CONVERT(VARCHAR(10), DateTrunc, 112) DateKey, 
+					DateTrunc [FullDate],
+					convert(varchar(20), DateTrunc, 112) [DateName],
+					DATEPART(dw, DateTrunc) [DayOfWeek],
+					DATEPART(dd, DateTrunc) [DayOfMonth],
+					DATEPART(dy, DateTrunc) [DayOfYear],
+					DATENAME(ww, DateTrunc) [WeekOfYear],
+					MONTH(DateTrunc) [MonthOfYear],
+					(CASE WHEN MONTH(DateTrunc) = MONTH (DATEADD(d, 1, DateTrunc)) THEN 0 ELSE 1 END) [IsLastDayOfMonth],
+					DATENAME(qq, DateTrunc) [CalendarQuarter],
+					YEAR(DateTrunc) [CalendarYear],
+					CONVERT(VARCHAR(6), DateTrunc, 112) [CalendarYearMonth],
+					CAST(YEAR(DateTrunc) AS VARCHAR(4)) + ''Q'' + DATENAME(qq, DateTrunc) [CalendarYearQtr]
+				FROM (
+					SELECT DateTrunc = DATEADD(DAY, rn - 1, dateadd(year, -1, CAST(year(getdate()) as varchar(4))+''-01-01''))
+					FROM (
+						SELECT TOP (1000) rn = ROW_NUMBER() OVER (ORDER BY s1.[object_id])
+						FROM sys.all_objects AS s1
+						CROSS JOIN sys.all_objects AS s2
+						ORDER BY s1.[object_id]
+						) AS x
+					) AS y
+				]]>
+				</Command>
+			</Entity>
+			<Entity name="biz.ShiftPart" schema="biz" type="view" dependencies="lnk.ShiftPart;sat.ShiftPart_Attr;lnk.Shift_ShiftLabel;hub.Shiftlabel">
+				<Command>
+				<![CDATA[
+				select shp.TsBegin ShiftStartTs, shp_a.TsNextBegin ShiftEndTs, lb.ShiftLabelId
+				from lnk.ShiftPart shp
+				inner join sat.ShiftPart_Attr shp_a on shp_a.ShiftPartKey = shp.ShiftPartKey
+				inner join lnk.Shift_ShiftLabel shl on shl.ShiftKey = shp.ShiftKey
+				inner join hub.Shiftlabel lb on lb.ShiftLabelKey = shl.ShiftLabelKey
+				]]>
+				</Command>
+			
+			</Entity>
+			<Entity name="biz.AreaArticleBlocks" schema="biz" type="table">
+					<Attribute name="AreaKey" dataType="varchar(100)" nullable="0" pk="1" />
+					<Attribute name="ProductionUnitKey" dataType="varchar(100)" nullable="0" pk="1" />
+					<Attribute name="TsBegin" dataType="datetime" nullable="0" pk="1" />
+					<Attribute name="ProductionCode" dataType="varchar(255)" nullable="0" pk="0" />
+					<Attribute name="ArticleDescription" dataType="varchar(255)" nullable="0" pk="0" />
+					<Attribute name="ArticlesCount" dataType="int" nullable="0" pk="0" />
+					<Attribute name="ColorChange" dataType="int" nullable="1" pk="0" />
+			</Entity>
+			<Entity name="biz.ShiftAreaValues" schema="biz" type="table">
+				<Attribute name="AreaKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="ValueKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="Actual" dataType="varchar(100)" nullable="1" pk="0" />
+				<Attribute name="ActualNum" dataType="varchar(100)" nullable="1" pk="0" />
+				<Attribute name="MinMin" dataType="varchar(255)" nullable="1" pk="0" />
+				<Attribute name="Minimum" dataType="varchar(255)" nullable="1" pk="0" />
+				<Attribute name="MaxMax" dataType="varchar(255)" nullable="1" pk="0" />
+				<Attribute name="Maximum" dataType="varchar(255)" nullable="1" pk="0" />
+			</Entity>
+			<Entity name="biz.Machine" schema="biz" type="table">
+				<Attribute name="MachineKey" dataType="varchar(100)" nullable="0" pk="1" />
+			</Entity>
+			<Entity name="biz.MachineTimes" schema="biz" type="table">
+				<Attribute name="MachineKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PlannedOperationTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="PlannedBusyTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ActualBusyTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ActualProcessingTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ActualProductionTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ActualDownTime" dataType="numeric" nullable="0" pk="0" />
+			</Entity>
+			<Entity name="biz.EmployeeTimes" schema="biz" type="table">
+				<Attribute name="EmployeeKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="ActualAttendanceTime" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ActualWorkTime" dataType="numeric" nullable="0" pk="0" />
+			</Entity>
+			<Entity name="biz.ProductionQuantities" schema="biz" type="table">
+				<Attribute name="OrderKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PlannedQty" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ProducedQty" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ReworkQty" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="ScrapQty" dataType="numeric" nullable="0" pk="0" />
+			</Entity>
+			
+		</Entities>
+
+		<Transformations>
+			<Transformation name="biz.LoadShiftAreaValues_cleaning" type="" targetEntities="biz.ShiftAreaValues" sourceEntities="lnk.AreaValue;lnk.Area_Hierarchy">
+				<Variable name="RecSrc" dataType="varchar(1)" expression="select RecSrc from adm.ETL_RECSRC" comment="Last loading date"/>				
+				<Variable name="DateFrom" dataType="datetime" expression="SELECT ISNULL(MAX(TsBegin), DATEADD(DAY, -365, GETDATE())) FROM biz.AreaArticleBlocks" comment="Last loading date"/>
+				<Variable name="DateTo" dataType="datetime" expression="GETDATE()" comment="Date To"/>
+				<Command type="tmpins" target="#tmpAv" comment="use a temporay table for performance optimization" >
+					<SourceSql>
+					<![CDATA[
+					select ParentAreaKey, PeriodKey, byLastAction, sum(duration) duration
+					from (
+						select ah.ParentAreaKey, productionUnitKey, PeriodKey, byLastAction, max(duration) duration
+						from (
+							select av.productionUnitKey, av.areakey, s.PeriodKey,
+								max(case when av.ValueKey = @RecSrc+''|GBM-byLastAction'' then av.Actual end) byLastAction,
+								sum(case when av.ValueKey <> @RecSrc+''|GBM-byLastAction'' then av.ActualNum end) duration
+							from lnk.AreaValue av
+							inner join dim.ShiftPeriod s on av.TsBegin >= s.PeriodStartTs and av.TsBegin < s.PeriodEndTs
+							where av.ValueKey in ( @RecSrc+''|GBM-iHomeCC'', @RecSrc+''|GBM-byLastAction'', @RecSrc+''|GBM-iHomeCheck'', @RecSrc+''|GBM-iHomePre'')
+								and av.tsBegin between @dateFrom and @dateTo
+							group by av.productionUnitKey, av.areakey, s.PeriodKey
+						) s_1
+						inner join lnk.Area_Hierarchy ah on ah.AreaKey = s_1.AreaKey
+						where s_1.duration <> 0
+						group by ah.ParentAreaKey, productionUnitKey, PeriodKey, byLastAction
+					) s
+					group by ParentAreaKey, PeriodKey, byLastAction
+					]]>
+					</SourceSql>
+					</Command>
+				<Command type="merge" source="#tmpAv" target="biz.ShiftAreaValues" comment="Merge the data in the final table" />
+			</Transformation>
+			<Transformation name="biz.LoadAreaArticleBlocks" type="" targetEntities="biz.AreaArticleBlocks">
+				<Variable name="LastBeginTs" dataType="datetime" expression="SELECT ISNULL(MAX(TsBegin), DATEADD(DAY, -365, GETDATE())) FROM biz.AreaArticleBlocks" comment="Last loading date"/>
+				<Variable name="SafeReloadDays" dataType="int" expression="2" comment="number of days that are reloaded before the last loaded date"/>
+				<Command type="tmpins" source="biz.AreaArticleBlocks_rt" target="#tmpAv" condition="tsBegin >= DATEADD(DAY, -2, @LastBeginTs)" 
+					comment="use a temporay table for performance optimization" />
+				<Command type="merge" source="#tmpAv" target="biz.AreaArticleBlocks" comment="Merge the data in the final table" />
+			</Transformation>
+		</Transformations>
+	</Layer>
+	
+	<Layer name="DIM">
+		<Entities>
+			<Entity name="dim.Language" schema="dim" type="view">
+				<Command>
+				<![CDATA[
+					select l.LangId LanguageId, l.LangKey LanguageKey, l10.Description LanguageName
+					from hub.Lang l
+					left join lnk.Lang_L10N l10 on l.LangKey = l10.LangKey and l10.LangKey = l10.LanguageKey
+					where l.LangId <> 0
+				]]>
+				</Command>
+			</Entity>
+
+			<Entity name="dim.Date" schema="dim" type="table">
+				<Attribute name="DateKey" dataType="varchar(8)" nullable="0" pk="1" />
+				<Attribute name="FullDate" dataType="date" nullable="0" pk="0" />
+				<Attribute name="DateName" dataType="varchar(20)" nullable="0" pk="0" />
+				<Attribute name="DayOfWeek" dataType="tinyint" nullable="0" pk="0" />
+				<Attribute name="DayOfMonth" dataType="tinyint" nullable="0" pk="0" />
+				<Attribute name="DayOfYear" dataType="smallint" nullable="0" pk="0" />
+				<Attribute name="WeekOfYear" dataType="tinyint" nullable="0" pk="0" />
+				<Attribute name="MonthOfYear" dataType="tinyint" nullable="0" pk="0" />
+				<Attribute name="IsLastDayOfMonth" dataType="bit" nullable="0" pk="0" />
+				<Attribute name="CalendarQuarter" dataType="tinyint" nullable="0" pk="0" />
+				<Attribute name="CalendarYear" dataType="int" nullable="0" pk="0" />
+				<Attribute name="CalendarYearMonth" dataType="varchar(10)" nullable="0" pk="0" />
+				<Attribute name="CalendarYearQtr" dataType="varchar(10)" nullable="0" pk="0" />
+			</Entity>
+			<Entity name="fact.Agg_AreaMsgclass_Messages" schema="fact" type="table">
+				<Attribute name="AreaKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="MessageClassKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="TotalDuration" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MaxDuration" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MessagesCount" dataType="int" nullable="0" pk="0" />
+				<Attribute name="TotalDuration_Filtered" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MaxDuration_Filtered" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MessagesCount_Filtered" dataType="int" nullable="0" pk="0" />
+				<Relation type="FK" fkType="N1" attribute="PeriodKey" fkEntity="dim.Dim_Period" fkAttribute="PeriodKey" />
+			</Entity>
+			<Entity name="fact.Agg_Area_Messages" schema="fact" type="table">
+				<Attribute name="AreaKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="TotalDuration" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MaxDuration" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MessagesCount" dataType="int" nullable="0" pk="0" />
+				<Attribute name="TotalDuration_Filtered" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MaxDuration_Filtered" dataType="numeric" nullable="0" pk="0" />
+				<Attribute name="MessagesCount_Filtered" dataType="int" nullable="0" pk="0" />
+				<Relation type="FK" fkType="N1" attribute="PeriodKey" fkEntity="dim.Dim_Period" fkAttribute="PeriodKey" />
+			</Entity>
+			<Entity name="dim.Dim_Period" schema="dim" type="table">
+				<Attribute name="PeriodKey" dataType="varchar(100)" nullable="0" pk="1" />
+				<Attribute name="PeriodType" dataType="varchar(20)" nullable="0" pk="0" />
+				<Attribute name="PeriodStartTs" dataType="datetime2" nullable="0" pk="0" />
+				<Attribute name="PeriodEndTs" dataType="datetime2" nullable="0" pk="0" />
+			</Entity>
+			<Entity name="dim.ShiftPeriod" schema="dim" type="view" dependencies="dim.Dim_Period">
+				<Command>
+				<![CDATA[
+					SELECT * 
+					FROM dim.Dim_Period
+					WHERE PeriodType = ''SHIFT''
+				]]>
+				</Command>
+			</Entity>
+			<Entity name="dim.Machine" schema="dim" type="view" dependencies="biz.Machine">
+				<Command>
+				<![CDATA[
+					SELECT * 
+					FROM biz.Machine
+				]]>
+				</Command>	
+			</Entity>
+			<Entity name="fact.MachineTimes" schema="fact" type="view" dependencies="biz.MachineTimes">
+				<Command>
+				<![CDATA[
+					SELECT * 
+					FROM biz.MachineTimes
+				]]>
+				</Command>
+			</Entity>
+			<Entity name="fact.EmployeeTimes" schema="fact" type="table" dependencies="biz.EmployeeTimes">
+				<Command>
+				<![CDATA[
+					SELECT * 
+					FROM biz.EmployeeTimes
+				]]>
+				</Command>
+			</Entity>
+			
+			
+			
+		</Entities>
+
+		<Transformations>
+			<Transformation name="dim.loadDate" type="" targetEntities="dim.Date" sourceEntities="biz.Date_LastYear_1000">
+				<Command type="merge" source="biz.Date_LastYear_1000" target="dim.Date" comment="Merge the data in the final table" />
+			</Transformation>
+
+		</Transformations>
+
+	</Layer>
+
+
+</CFG>

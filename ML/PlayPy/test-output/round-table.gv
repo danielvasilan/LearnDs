@@ -1,0 +1,76 @@
+// The Round Table
+digraph {
+	rank=same rankdir=TB splines=line
+	subgraph clusterDV {
+		node [shape=ellipse]
+		label="DV Layer"
+		"lnk.ShiftPart" [color=red group=DV shape=hexagon]
+		"lnk.Shift_ShiftLabel" [color=red group=DV shape=hexagon]
+		"lnk.ShiftPart" -> "lnk.Shift_ShiftLabel" [color=invis]
+		"hub.Shiftlabel" [color=blue group=DV shape=box]
+		"lnk.Shift_ShiftLabel" -> "hub.Shiftlabel" [color=invis]
+		"sat.ShiftPart_Attr" [color=green group=DV shape=ellipse]
+		"hub.Shiftlabel" -> "sat.ShiftPart_Attr" [color=invis]
+		"lnk.AreaValue" [color=red group=DV shape=hexagon]
+		"sat.ShiftPart_Attr" -> "lnk.AreaValue" [color=invis]
+		"lnk.Area_Hierarchy" [color=red group=DV shape=hexagon]
+		"lnk.AreaValue" -> "lnk.Area_Hierarchy" [color=invis]
+	}
+	subgraph clusterBIZ {
+		node [shape=ellipse]
+		label="BIZ Layer"
+		"biz.Date_LastYear_1000" [color=green group=BIZ shape=ellipse style=dashed tooltip="&#10;				&#10;					SELECT CONVERT(VARCHAR(10), DateTrunc, 112) DateKey, &#10;					DateTrunc [FullDate],&#10;					convert(varchar(20), DateTrunc, 112) [DateName],&#10;					DATEPART(dw, DateTrunc) [DayOfWeek],&#10;					DATEPART(dd, DateTrunc) [DayOfMonth],&#10;					DATEPART(dy, DateTrunc) [DayOfYear],&#10;					DATENAME(ww, DateTrunc) [WeekOfYear],&#10;					MONTH(DateTrunc) [MonthOfYear],&#10;					(CASE WHEN MONTH(DateTrunc) = MONTH (DATEADD(d, 1, DateTrunc)) THEN 0 ELSE 1 END) [IsLastDayOfMonth],&#10;					DATENAME(qq, DateTrunc) [CalendarQuarter],&#10;					YEAR(DateTrunc) [CalendarYear],&#10;					CONVERT(VARCHAR(6), DateTrunc, 112) [CalendarYearMonth],&#10;					CAST(YEAR(DateTrunc) AS VARCHAR(4)) + ''Q'' + DATENAME(qq, DateTrunc) [CalendarYearQtr]&#10;				FROM (&#10;					SELECT DateTrunc = DATEADD(DAY, rn - 1, dateadd(year, -1, CAST(year(getdate()) as varchar(4))+''-01-01''))&#10;					FROM (&#10;						SELECT TOP (1000) rn = ROW_NUMBER() OVER (ORDER BY s1.[object_id])&#10;						FROM sys.all_objects AS s1&#10;						CROSS JOIN sys.all_objects AS s2&#10;						ORDER BY s1.[object_id]&#10;						) AS x&#10;					) AS y&#10;				&#10;				"]
+		"biz.ShiftPart" [color=green group=BIZ shape=ellipse style=dashed tooltip="&#10;				&#10;				select shp.TsBegin ShiftStartTs, shp_a.TsNextBegin ShiftEndTs, lb.ShiftLabelId&#10;				from lnk.ShiftPart shp&#10;				inner join sat.ShiftPart_Attr shp_a on shp_a.ShiftPartKey = shp.ShiftPartKey&#10;				inner join lnk.Shift_ShiftLabel shl on shl.ShiftKey = shp.ShiftKey&#10;				inner join hub.Shiftlabel lb on lb.ShiftLabelKey = shl.ShiftLabelKey&#10;				&#10;				"]
+		"lnk.ShiftPart" -> "biz.ShiftPart" [style=dashed]
+		"sat.ShiftPart_Attr" -> "biz.ShiftPart" [style=dashed]
+		"lnk.Shift_ShiftLabel" -> "biz.ShiftPart" [style=dashed]
+		"hub.Shiftlabel" -> "biz.ShiftPart" [style=dashed]
+		"biz.Date_LastYear_1000" -> "biz.ShiftPart" [color=invis]
+		"biz.AreaArticleBlocks" [color=green group=BIZ shape=ellipse]
+		"biz.ShiftPart" -> "biz.AreaArticleBlocks" [color=invis]
+		"biz.ShiftAreaValues" [color=green group=BIZ shape=ellipse]
+		"biz.AreaArticleBlocks" -> "biz.ShiftAreaValues" [color=invis]
+		"biz.Machine" [color=green group=BIZ shape=ellipse]
+		"biz.ShiftAreaValues" -> "biz.Machine" [color=invis]
+		"biz.MachineTimes" [color=green group=BIZ shape=ellipse]
+		"biz.Machine" -> "biz.MachineTimes" [color=invis]
+		"biz.EmployeeTimes" [color=green group=BIZ shape=ellipse]
+		"biz.MachineTimes" -> "biz.EmployeeTimes" [color=invis]
+		"biz.ProductionQuantities" [color=green group=BIZ shape=ellipse]
+		"biz.EmployeeTimes" -> "biz.ProductionQuantities" [color=invis]
+		"biz.LoadShiftAreaValues_cleaning" [color=gray shape=box style=filled]
+		"lnk.AreaValue" -> "biz.LoadShiftAreaValues_cleaning"
+		"lnk.Area_Hierarchy" -> "biz.LoadShiftAreaValues_cleaning"
+		"biz.LoadShiftAreaValues_cleaning" -> "biz.ShiftAreaValues"
+		"biz.LoadAreaArticleBlocks" [color=gray shape=box style=filled]
+		"biz.LoadAreaArticleBlocks" -> "biz.AreaArticleBlocks"
+	}
+	subgraph clusterDIM {
+		node [shape=ellipse]
+		label="DIM Layer"
+		"dim.Language" [color=blue group=DIM shape=ellipse style=dashed tooltip="&#10;				&#10;					select l.LangId LanguageId, l.LangKey LanguageKey, l10.Description LanguageName&#10;					from hub.Lang l&#10;					left join lnk.Lang_L10N l10 on l.LangKey = l10.LangKey and l10.LangKey = l10.LanguageKey&#10;					where l.LangId <> 0&#10;				&#10;				"]
+		"dim.Date" [color=blue group=DIM shape=ellipse]
+		"dim.Language" -> "dim.Date" [color=invis]
+		"fact.Agg_AreaMsgclass_Messages" [color=red group=DIM shape=box]
+		"dim.Date" -> "fact.Agg_AreaMsgclass_Messages" [color=invis]
+		"fact.Agg_Area_Messages" [color=red group=DIM shape=box]
+		"fact.Agg_AreaMsgclass_Messages" -> "fact.Agg_Area_Messages" [color=invis]
+		"dim.Dim_Period" [color=blue group=DIM shape=ellipse]
+		"fact.Agg_Area_Messages" -> "dim.Dim_Period" [color=invis]
+		"dim.ShiftPeriod" [color=blue group=DIM shape=ellipse style=dashed tooltip="&#10;				&#10;					SELECT * &#10;					FROM dim.Dim_Period&#10;					WHERE PeriodType = ''SHIFT''&#10;				&#10;				"]
+		"dim.Dim_Period" -> "dim.ShiftPeriod" [style=dashed]
+		"dim.Dim_Period" -> "dim.ShiftPeriod" [color=invis]
+		"dim.Machine" [color=blue group=DIM shape=ellipse style=dashed tooltip="&#10;				&#10;					SELECT * &#10;					FROM biz.Machine&#10;				&#10;				"]
+		"biz.Machine" -> "dim.Machine" [style=dashed]
+		"dim.ShiftPeriod" -> "dim.Machine" [color=invis]
+		"fact.MachineTimes" [color=red group=DIM shape=box style=dashed tooltip="&#10;				&#10;					SELECT * &#10;					FROM biz.MachineTimes&#10;				&#10;				"]
+		"biz.MachineTimes" -> "fact.MachineTimes" [style=dashed]
+		"dim.Machine" -> "fact.MachineTimes" [color=invis]
+		"fact.EmployeeTimes" [color=red group=DIM shape=box]
+		"biz.EmployeeTimes" -> "fact.EmployeeTimes" [style=dashed]
+		"fact.MachineTimes" -> "fact.EmployeeTimes" [color=invis]
+		"dim.loadDate" [color=gray shape=box style=filled]
+		"biz.Date_LastYear_1000" -> "dim.loadDate"
+		"dim.loadDate" -> "dim.Date"
+	}
+}

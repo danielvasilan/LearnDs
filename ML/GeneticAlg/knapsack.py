@@ -6,11 +6,11 @@ print("Knapsack Problem - solution")
 
 # input data
 
-max_generations = 1000
+max_generations = 10
 population_size = 100
 knapsack_capacity = 400
 mutation_rate = 0.01
-replacement_rate = 0.5
+replacement_rate = 0.2
 
 f = open("ex1.txt", "r")
 items_nm = []
@@ -116,17 +116,22 @@ class Population:
 			new_individual = Individual(replace_id, [])
 			new_individual.status = "+"
 			self.individuals[replace_id - 1] = new_individual
-		# combine the best individuals
+		# combine the best individuals and replace 
 		combine_num = int(replace_num / 2)
 		for idx in range(0, combine_num):
 			parent1 = ordIndividuals[idx]
 			parent2 = ordIndividuals[idx + 1]
-			new_indiv1 = Individual(parent1.id, combinedGenome(parent1.genome, parent2.genome))
+			replace_id1 = ordIndividuals[population_size - replace_num - (2 * idx)].id
+			replace_id2 = replace_id1 - 1
+			new_indiv1 = Individual(replace_id1, combinedGenome(parent1.genome, parent2.genome))
 			new_indiv1.status = "#"
-			new_indiv2 = Individual(parent2.id, combinedGenome(parent2.genome, parent1.genome))
+			new_indiv2 = Individual(replace_id2, combinedGenome(parent2.genome, parent1.genome))
 			new_indiv2.status = "#"
-			self.individuals[parent1.id - 1] = new_indiv1
-			self.individuals[parent2.id - 1] = new_indiv2
+			# determine the individuals to be replaced
+			print (str(idx) + " - " + str(replace_id1))
+			# replace the 
+			self.individuals[replace_id1-1] = new_indiv1
+			self.individuals[replace_id2-1] = new_indiv2
 		
 		
 	def mutation(self):
