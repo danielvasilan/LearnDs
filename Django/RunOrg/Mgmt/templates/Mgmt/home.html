@@ -1,14 +1,14 @@
 {% extends "Mgmt/Base.html" %}
 {% block content %}
-    {% for location in locations %}
+    {% for event in events %}
          <article class="media content-section">
             <div class="media-body">
               <div class="article-metadata">
-                <a class="mr-2" href="#">{{ location.name }}</a>
-                <small class="text-muted">{{ location.status }}</small>
+                <a class="mr-2" href="#">{{ event.name }}</a>
+                <small class="text-muted">{{ event.event_date }}</small>
               </div>
-              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-              <p class="article-content">{{ location.name }}</p>
+              <h2><a class="article-title" href="#">{{ event.name }}</a></h2>
+              <p class="article-content">{{ event.description }}</p>
             </div>
           </article>
 
