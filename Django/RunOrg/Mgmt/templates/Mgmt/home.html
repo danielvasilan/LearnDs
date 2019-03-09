@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title> </title>
-</head>
-<body>
-    <h1>Config page ! </h1>
-
+{% extends "Mgmt/Base.html" %}
+{% block content %}
     {% for location in locations %}
-        <h1> {{ location.name }} </h1>
+         <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ location.name }}</a>
+                <small class="text-muted">{{ location.status }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+              <p class="article-content">{{ location.name }}</p>
+            </div>
+          </article>
+
     {% endfor %}
-</body>
+{% endblock content %}
 
