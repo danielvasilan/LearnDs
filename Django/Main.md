@@ -31,6 +31,11 @@ In order to view the SQL that a migration will use, execute this in CLI
 python manage.py sqlmigrate <appname> <migration id>
 ````
 
+Install crispy forms
+````
+pip install django-cripsy-forms
+````
+
 Django
 
 
