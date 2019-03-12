@@ -1,0 +1,22 @@
+{% extends "Mgmt/base.html" %}
+{% block content %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+        <a class="mr-2" href="{{ event.organizer_id.homepage }}">
+            <img height="60" width="60" src="{{ event.organizer_id.image.url }}" /> {{ event.organizer_id.name }}
+        </a>
+        <small class="text-muted">{{ event.event_date|date:"F d, Y" }}</small>
+
+      <div>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'event-update' event.id %}">Update</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'event-delete' event.id %}">Delete</a>
+      </div>
+
+    </div>
+    <h2 class="article-title">{{ event.name }}</h2>
+    <p class="article-content">{{ event.description }}</p>
+  </div>
+</article>
+
+{% endblock content %}

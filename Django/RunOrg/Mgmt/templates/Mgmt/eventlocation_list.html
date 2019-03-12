@@ -1,0 +1,14 @@
+{% extends "Mgmt/base.html" %}
+{% block content %}
+{% for location in object_list %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ location.name }}</a>
+    </div>
+    <p class="article-content">{{ location.description }}</p>
+  </div>
+</article>
+
+{% endfor %}
+{% endblock content %}

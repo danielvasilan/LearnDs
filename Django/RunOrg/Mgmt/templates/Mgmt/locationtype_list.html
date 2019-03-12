@@ -1,0 +1,15 @@
+{% extends "Mgmt/base.html" %}
+{% block content %}
+{% for locationtype in object_list %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ locationtype.name }}</a>
+    </div>
+    <h2><a class="article-title" href="{% url 'locationtype-detail' locationtype.id %}">{{ locationtype.name }}</a></h2>
+    <p class="article-content">{{ locationtype.description }}</p>
+  </div>
+</article>
+
+{% endfor %}
+{% endblock content %}
