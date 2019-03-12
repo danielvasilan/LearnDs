@@ -3,3 +3,5 @@ WTA/DB/ETL_SSIS/.vs/WTA_ETL_SSIS/v15/.suo
 WTA/DB/ETL_SSIS/WTA_ETL_SSIS/.vs/WTA_ETL_SSIS/v15/.suo
 WTA/DB/ETL_SSIS/WTA_ETL_SSIS/bin/Development/WTA_ETL_SSIS.ispac
 ML/GeneticAlg/ex1_run.csv
+*.pyc
+Django/RunOrg/Mgmt/__pycache__/urls.cpython-37.pyc
