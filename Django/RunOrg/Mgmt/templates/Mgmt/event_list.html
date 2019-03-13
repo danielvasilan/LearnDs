@@ -1,5 +1,6 @@
 {% extends "Mgmt/base.html" %}
 {% block content %}
+<a class="btn btn-info mb-2" href="{% url 'event-create' %}" > Add a new event</a>
 {% for event in object_list %}
 <article class="media content-section">
   <div class="media-body">

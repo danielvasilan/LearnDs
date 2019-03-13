@@ -46,10 +46,14 @@ class EventLocation(models.Model):
     description = models.TextField(default='<add description here>')
     localization = models.TextField(null=True)
     location_type = models.ForeignKey(LocationType, on_delete=models.PROTECT)
-    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
-
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+ 
     def __str__(self):
         return self.event_id.name + ' -> ' + self.name
+
+    def get_absolute_url(self):
+        return reverse('location-list', kwargs={'event_id': self.event.pk})
+
 
 class EventRole(models.Model):
     name = models.CharField(max_length=30)

@@ -19,7 +19,7 @@ urlpatterns = [
 
     path('event/<int:event_id>/location/', EventLocationListView.as_view(), name='location-list'),
     #path('location/<int:pk>/', LocationTypeDetailView.as_view(), name='locationtype-detail'),
-    #path('location/new/', LocationTypeCreateView.as_view(), name='locationtype-create'),
+    path('event/<int:event_id>/location/new/', EventLocationCreateView.as_view(), name='location-new'),
 
 
     path('about/', views.about, name='mgmt-about')

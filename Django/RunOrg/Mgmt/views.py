@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
@@ -57,11 +57,22 @@ class LocationTypeCreateView(LoginRequiredMixin, CreateView):
     model = LocationType
     fields = ['name']
 
+
+
 # EventLocation views
 
 class EventLocationListView(ListView):
     model = EventLocation
     ordering = ['name']
+
+    def get_queryset(self):
+        self.event_id = get_object_or_404(Event, id=self.kwargs['event_id'])
+        return EventLocation.objects.filter(event_id=self.event_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event'] = get_object_or_404(Event, id=self.kwargs['event_id'])
+        return context
 
 class EventLocationDetailView(DetailView):
     model = EventLocation
@@ -69,6 +80,17 @@ class EventLocationDetailView(DetailView):
 class EventLocationCreateView(LoginRequiredMixin, CreateView):
     model = EventLocation
     fields = ['name', 'description', 'localization', 'location_type']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event'] = get_object_or_404(Event, id=self.kwargs['event_id'])
+        return context
+
+    def form_valid(self, form):
+        event = get_object_or_404(Event, id=self.kwargs['event_id'])
+        form.instance.event_id = event.pk
+        return super().form_valid(form)
+
 
 # other views
 

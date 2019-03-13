@@ -1,5 +1,7 @@
 {% extends "Mgmt/base.html" %}
 {% block content %}
+<a class="btn btn-info mb-2" href="{% url 'location-new' event.pk %}">+</a>
+<div class="text-info float-right">{{ event }}</div>
 {% for location in object_list %}
 <article class="media content-section">
   <div class="media-body">
