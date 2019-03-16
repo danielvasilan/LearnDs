@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'Mgmt.apps.MgmtConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'leaflet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +130,10 @@ CRISPY_TEMPLATE_PACk = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'mgmt-home'
 LOGIN_URL = 'login'
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (45.75, 21.22),
+    'DEFAULT_ZOOM': 14,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18
+}

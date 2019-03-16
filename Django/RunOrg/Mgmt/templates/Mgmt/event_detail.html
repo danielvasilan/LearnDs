@@ -17,6 +17,7 @@
     <h2 class="article-title">{{ event.name }}</h2>
     <p class="article-content">{{ event.description }}</p>
     <a class="btn btn-secondary" href="{% url 'location-list' event.id %}"> Locations </a>
+    <a class="btn btn-secondary" href="{% url 'event-gantt' %}"> Gantt </a>
   </div>
 </article>
 

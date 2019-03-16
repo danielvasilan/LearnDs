@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     EventListView, EventDetailView, EventCreateView, EventUpdateView, EventDeleteView,
     LocationTypeListView, LocationTypeDetailView, LocationTypeCreateView,
-    EventLocationListView, EventLocationDetailView, EventLocationCreateView
+    EventLocationListView, EventLocationDetailView, EventLocationCreateView, EventLocationUpdateView, EventLocationDeleteView
 )
 from . import views
 
@@ -18,9 +18,12 @@ urlpatterns = [
     path('locationtype/new/', LocationTypeCreateView.as_view(), name='locationtype-create'),
 
     path('event/<int:event_id>/location/', EventLocationListView.as_view(), name='location-list'),
-    #path('location/<int:pk>/', LocationTypeDetailView.as_view(), name='locationtype-detail'),
+    path('event/<int:event_id>/location/<int:pk>/', EventLocationDetailView.as_view(), name='location-detail'),
     path('event/<int:event_id>/location/new/', EventLocationCreateView.as_view(), name='location-new'),
+    path('event/<int:event_id>/location/<int:pk>/update/', EventLocationUpdateView.as_view(), name='location-update'),
+    path('event/<int:event_id>/location/<int:pk>/delete/', EventLocationDeleteView.as_view(), name='location-delete'),
 
+    path('eventgantt/', views.eventGantt, name='event-gantt'),
 
     path('about/', views.about, name='mgmt-about')
 ]

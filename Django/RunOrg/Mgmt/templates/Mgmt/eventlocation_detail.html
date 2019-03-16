@@ -1,0 +1,17 @@
+{% extends "Mgmt/base.html" %}
+{% block content %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+       
+      <h1> {{ gantt }} </h1>
+      
+        
+    </div>
+    <h2 class="article-title">{{ location.name }}</h2>
+    <p class="article-content">{{ location.description }}</p>
+    
+  </div>
+</article>
+
+{% endblock content %}

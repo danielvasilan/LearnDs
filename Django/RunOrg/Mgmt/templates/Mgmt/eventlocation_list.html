@@ -1,16 +1,66 @@
 {% extends "Mgmt/base.html" %}
+
 {% block content %}
+
 <a class="btn btn-info mb-2" href="{% url 'location-new' event.pk %}">+</a>
+{% for area in areas %}
+    <a class="text-muted" href="#">{{area.shortcode}}</a>
+{% endfor %}
 <div class="text-info float-right">{{ event }}</div>
 {% for location in object_list %}
 <article class="media content-section">
+
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="#">{{ location.name }}</a>
+      <a class="mr-2" href="{% url 'location-detail' event.pk location.pk %}">{{ location.shortcode }}</a>
+      <small class="text-muted">{{ location.name }}</small>
     </div>
+    <img src="/media/map-ico-{{ location.location_type.name }}.png" width="30" height="30" /> 
     <p class="article-content">{{ location.description }}</p>
+  </div>
+  <div>
+      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'location-update' event.pk location.pk %}">Update</a>
+      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'location-delete' event.pk location.pk %}">Delete</a>
   </div>
 </article>
 
 {% endfor %}
 {% endblock content %}
+
+{% load leaflet_tags %}
+
+{% block rightsidebar %}
+<script>
+  
+    function map_init_basic (map, options) {
+        {% for area in areas %}
+        var latlngs = [ {{ area.boundaries }} ];
+        var polyline = L.polyline(latlngs, {color: '{{area.color}}'}).addTo(map);
+        {% endfor %}
+          // zoom the map to the polyline
+          map.fitBounds(polyline.getBounds());
+
+          {% for location in object_list %}
+                /*var myIcon = L.icon({
+                    iconUrl: '/media/map-ico-{{ location.location_type.name }}.png',
+                    iconSize: [25, 25],
+                    iconAnchor: [22, 94],
+                    popupAnchor: [-3, -76]
+                });*/
+                var myIcon = L.divIcon({html: '<h1>{{location.shortcode}}</h1>'});
+                L.marker([ {{ location.loc_lat }} , {{ location.loc_lon }} ] , { title: "{{ location.name }}", icon: myIcon }).addTo(map);
+            
+            {% endfor %}
+
+    }
+    
+
+  </script>
+  
+<div class="col-md-4">
+    <div class="content-section">
+        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+        
+    </div>
+</div>
+{% endblock rightsidebar %}
