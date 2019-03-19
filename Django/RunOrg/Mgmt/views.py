@@ -64,8 +64,6 @@ class LocationTypeCreateView(LoginRequiredMixin, CreateView):
 # EventLocation views
 
 class EventLocationListView(ListView):
-    model = EventLocation
-    ordering = ['shortcode']
 
     def get_queryset(self):
         self.event_id = get_object_or_404(Event, id=self.kwargs['event_id'])
@@ -90,7 +88,7 @@ class EventLocationDetailView(DetailView):
 
 class EventLocationCreateView(LoginRequiredMixin, CreateView):
     model = EventLocation
-    fields = ['shortcode', 'name', 'description', 'location_type', 'area', 'color']
+    fields = ['shortcode', 'name', 'description', 'location_type', 'area', 'loc_lat', 'loc_lon']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -104,7 +102,7 @@ class EventLocationCreateView(LoginRequiredMixin, CreateView):
 
 class EventLocationUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = EventLocation
-    fields = ['shortcode', 'name', 'description', 'location_type', 'area', 'color']
+    fields = ['shortcode', 'name', 'description', 'location_type', 'area', 'loc_lat', 'loc_lon']
 
     def test_func(self):
         return True

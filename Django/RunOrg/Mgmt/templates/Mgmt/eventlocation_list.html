@@ -12,10 +12,11 @@
 
   <div class="media-body">
     <div class="article-metadata">
+      <img class="mr-2" src="/media/map-ico-{{ location.location_type.name }}.png" width="30" height="30" /> 
       <a class="mr-2" href="{% url 'location-detail' event.pk location.pk %}">{{ location.shortcode }}</a>
       <small class="text-muted">{{ location.name }}</small>
     </div>
-    <img src="/media/map-ico-{{ location.location_type.name }}.png" width="30" height="30" /> 
+    
     <p class="article-content">{{ location.description }}</p>
   </div>
   <div>
@@ -33,21 +34,21 @@
 <script>
   
     function map_init_basic (map, options) {
-        {% for area in areas %}
-        var latlngs = [ {{ area.boundaries }} ];
-        var polyline = L.polyline(latlngs, {color: '{{area.color}}'}).addTo(map);
-        {% endfor %}
+        //{% for area in areas %}
+       // var latlngs = [ {{ area.boundaries }} ];
+        //var polyline = L.polyline(latlngs, {color: '{{area.color}}'}).addTo(map);
+       // {% endfor %}
           // zoom the map to the polyline
-          map.fitBounds(polyline.getBounds());
+          //map.fitBounds(polyline.getBounds());
 
           {% for location in object_list %}
-                /*var myIcon = L.icon({
+                var myIcon = L.icon({
                     iconUrl: '/media/map-ico-{{ location.location_type.name }}.png',
                     iconSize: [25, 25],
-                    iconAnchor: [22, 94],
-                    popupAnchor: [-3, -76]
-                });*/
-                var myIcon = L.divIcon({html: '<h1>{{location.shortcode}}</h1>'});
+                    //iconAnchor: [22, //94],
+                    //popupAnchor: [-3, -76]
+                });
+                //var myIcon = L.divIcon({html: '<h3>{{location.shortcode}}</h3>'});
                 L.marker([ {{ location.loc_lat }} , {{ location.loc_lon }} ] , { title: "{{ location.name }}", icon: myIcon }).addTo(map);
             
             {% endfor %}
